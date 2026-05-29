@@ -18,9 +18,7 @@
     })();
   </script>
   <style>
-    /* ═══════════════════════════════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════════════════════════════ */
+    /* DESIGN TOKENS */
     :root {
       --bg: #0a0c10;
       --bg2: #0f1117;
@@ -59,9 +57,7 @@
       --shadow2: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
-    /* ═══════════════════════════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════════════════════════ */
+    /* RESET & BASE */
     *,
     *::before,
     *::after {
@@ -2380,9 +2376,7 @@
     <div id="toastContainer"></div>
 
     <script>
-      /* ═══════════════════════════════════════════════════════════════
-         STATE & TRANSLATIONS
-      ═══════════════════════════════════════════════════════════════ */
+      /* STATE & TRANSLATIONS */
       const TRANSLATIONS = {
         en: {
           lang_select_label: "Select language",
@@ -2783,9 +2777,7 @@
       let selectedZipFile = null;
       let appLang = localStorage.getItem('qyx_lang') || 'en';
 
-      /* ═══════════════════════════════════════════════════════════════
-         DOM REFS
-      ═══════════════════════════════════════════════════════════════ */
+      /* DOM REFS */
       const editor = document.getElementById('codeEditor');
       const lineNumbers = document.getElementById('lineNumbers');
       const charCount = document.getElementById('charCount');
@@ -2800,9 +2792,7 @@
       const engineInfo = document.getElementById('engineInfo');
       const timeInfo = document.getElementById('timeInfo');
 
-      /* ═══════════════════════════════════════════════════════════════
-         THEME
-      ═══════════════════════════════════════════════════════════════ */
+      /* THEME */
       // dark mode → moon, light mode → sun
       function setThemeIcon(theme) {
         const icon = document.getElementById('themeIcon');
@@ -4240,9 +4230,7 @@ int main() {
 
       window.loadSample = loadSample;
 
-      /* ═══════════════════════════════════════════════════════════════
-         INIT
-      ═══════════════════════════════════════════════════════════════ */
+      /* INIT */
       // Wire up language selector
       const langSelect = document.getElementById('langSelect');
       if (langSelect) {
@@ -4271,9 +4259,7 @@ int main() {
         if (savedUrl) apiUrlInput.value = savedUrl;
       }
 
-      /* ═══════════════════════════════════════════════════════════════
-         DIGEST SUBSCRIBE
-      ═══════════════════════════════════════════════════════════════ */
+      /* DIGEST SUBSCRIBE */
       document.getElementById('digestForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('digestEmail').value.trim();
