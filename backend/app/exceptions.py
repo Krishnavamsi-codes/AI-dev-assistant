@@ -31,7 +31,7 @@ class APIException(HTTPException):
 
 def map_http_exception_to_code(status_code: int, detail: str) -> str:
     detail_lower = detail.lower()
-    
+
     # 401 Unauthorized
     if status_code == 401:
         if "authentication required" in detail_lower:
@@ -41,13 +41,13 @@ def map_http_exception_to_code(status_code: int, detail: str) -> str:
         if "invalid credentials" in detail_lower:
             return ErrorCode.INVALID_CREDENTIALS
         return "unauthorized"
-        
+
     # 403 Forbidden
     if status_code == 403:
         if "invalid unsubscribe token" in detail_lower:
             return ErrorCode.INVALID_TOKEN
         return ErrorCode.FORBIDDEN
-        
+
     # 404 Not Found
     if status_code == 404:
         if "history" in detail_lower:
@@ -59,7 +59,7 @@ def map_http_exception_to_code(status_code: int, detail: str) -> str:
         if "subscription" in detail_lower:
             return ErrorCode.SUBSCRIPTION_NOT_FOUND
         return "not_found"
-        
+
     # 409 Conflict
     if status_code == 409:
         if "already subscribed" in detail_lower:
@@ -67,29 +67,29 @@ def map_http_exception_to_code(status_code: int, detail: str) -> str:
         if "email already exists" in detail_lower:
             return ErrorCode.EMAIL_ALREADY_EXISTS
         return "conflict"
-        
+
     # 413 Content Too Large / Payload Too Large
     if status_code == 413:
         return ErrorCode.PAYLOAD_TOO_LARGE
-        
+
     # 415 Unsupported Media Type
     if status_code == 415:
         return ErrorCode.UNSUPPORTED_FILE_TYPE
-        
+
     # 429 Too Many Requests
     if status_code == 429:
         return ErrorCode.RATE_LIMITED
-        
+
     # 400 Bad Request
     if status_code == 400:
         if "only .zip" in detail_lower:
             return ErrorCode.UNSUPPORTED_FILE_TYPE
         return ErrorCode.BAD_REQUEST
-        
+
     # 500 Internal Server Error
     if status_code == 500:
         return ErrorCode.INTERNAL_SERVER_ERROR
-        
+
     return ErrorCode.BAD_REQUEST if status_code < 500 else ErrorCode.INTERNAL_SERVER_ERROR
 
 async def api_exception_handler(request: Request, exc: APIException):
@@ -117,10 +117,10 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     errors = exc.errors()
     details = []
     for err in errors:
-        loc = " -> ".join(str(l) for l in err["loc"])
+        loc = " -> ".join(str(location_part) for location_part in err["loc"])
         details.append(f"{loc}: {err['msg']}")
     detail_str = "; ".join(details)
-    
+
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={
