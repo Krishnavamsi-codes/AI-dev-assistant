@@ -1,8 +1,9 @@
+import logging
 from enum import Enum
+
 from fastapi import HTTPException, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-import logging
 
 logger = logging.getLogger("ai_assistant.exceptions")
 
